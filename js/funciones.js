@@ -153,12 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
 const pintarPaises = () => {
     const contenedor = document.getElementById("pais-contenedor");
     paises.forEach(pais => {
-      const div = document.createElement('div');
-      div.classList.add('card');
-      div.innerHTML += `<div class="card-image">
-                          <img src=${pais.img}>
+        const div = document.createElement('div');
+        div.classList.add('caja');
+        div.innerHTML += `<div class="card-image">
+                        <!-- <img src=${pais.img}> -->
                           <span class="card-title">${pais.nombre}</span>
-                          <a class="btn-floating halfway-fab wabes-effect waves-light red"><i id=${pais.id} class="material-icons agregar">add_shopping_cart</i></a>
                         </div>
                         <div class="card-content">
                             <p>Población: ${pais.poblacion}</p>
@@ -168,9 +167,9 @@ const pintarPaises = () => {
                             <p>Capital: ${pais.capital}</p>
                         </div>
                        `
-      contenedor.appendChild(div);
+        contenedor.appendChild(div);
     });
-  };
+};
 
 // MODO OSCURO
 const botonColorMode = document.querySelector("#color-mode");

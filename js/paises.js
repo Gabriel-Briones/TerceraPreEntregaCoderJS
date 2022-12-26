@@ -5,7 +5,8 @@ let paises = [
         superficie: 2780400,
         idioma: "español",
         independencia: 1816,
-        capital: "Buenos Aires"
+        capital: "Buenos Aires",
+        // img: 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Argentina_Blank_Map.svg'
     },
     {
         nombre: "Brasil",
