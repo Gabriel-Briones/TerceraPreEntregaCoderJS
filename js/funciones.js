@@ -138,7 +138,41 @@ function verCaracteristicas() {
 // }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    pintarPaises();
 
+    // if (localStorage.getItem('carrito')) {
+    //     carrito = obtenerCarritoStorage();
+    //     console.log(carrito)
+    //     actualizarCarrito(carrito);
+    // }
+});
+
+//Mostrar Países
+
+const pintarPaises = () => {
+    const contenedor = document.getElementById("pais-contenedor");
+    paises.forEach(pais => {
+      const div = document.createElement('div');
+      div.classList.add('card');
+      div.innerHTML += `<div class="card-image">
+                          <img src=${pais.img}>
+                          <span class="card-title">${pais.nombre}</span>
+                          <a class="btn-floating halfway-fab wabes-effect waves-light red"><i id=${pais.id} class="material-icons agregar">add_shopping_cart</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>Población: ${pais.poblacion}</p>
+                            <p>Superficie: ${pais.superficie}</p>
+                            <p>Idioma: ${pais.idioma}</p>
+                            <p>Año Independencia:${pais.independencia}</p>
+                            <p>Capital: ${pais.capital}</p>
+                        </div>
+                       `
+      contenedor.appendChild(div);
+    });
+  };
+
+// MODO OSCURO
 const botonColorMode = document.querySelector("#color-mode");
 const body = document.body;
 
