@@ -157,16 +157,15 @@ const pintarPaises = () => {
         div.classList.add('caja');
         div.innerHTML += `<div class="card-image">
                         <!-- <img src=${pais.img}> -->
-                          <span class="card-title">${pais.nombre}</span>
+                        <p class="titulos">${pais.nombre}</p>
                         </div>
                         <div class="card-content">
-                            <p>Población: ${pais.poblacion}</p>
-                            <p>Superficie: ${pais.superficie}</p>
+                            <p>Población: ${pais.poblacion.toLocaleString()} Hab.</p>
+                            <p>Superficie: ${pais.superficie.toLocaleString()} Km2</p>
                             <p>Idioma: ${pais.idioma}</p>
-                            <p>Año Independencia:${pais.independencia}</p>
+                            <p>Año Independencia: ${pais.independencia.toLocaleString()}</p>
                             <p>Capital: ${pais.capital}</p>
-                        </div>
-                       `
+                        </div>`
         contenedor.appendChild(div);
     });
 };
