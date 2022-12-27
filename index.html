@@ -35,9 +35,9 @@
             </p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <button id="agregar" type="button" class="btn btn-primary btn-lg px-4 gap-3" data-bs-toggle="modal"
-                data-bs-target="#ModalAgregar">Agregar país</button>
+                    data-bs-target="#ModalAgregar">Agregar país</button>
                 <button id="filtrar" type="button" class="btn btn-outline-secondary btn-lg px-4" data-bs-toggle="modal"
-                data-bs-target="#ModalFiltrar">Filtrar país</button>
+                    data-bs-target="#ModalFiltrar">Filtrar país</button>
                 <button id="eliminar" type="button" class="btn btn-outline-secondary btn-lg px-4" data-bs-toggle="modal"
                     data-bs-target="#ModalEliminar">Eliminar país</button>
             </div>
@@ -55,11 +55,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form id="agregar-form">
+                        <div class="mb-3">
+                            <label for="paisNombreNuevo" class="form-label">Nombre del país</label>
+                            <input type="text" class="form-control" id="paisNombreNuevo" placeholder="Wakanda">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paisPoblacionNuevo" class="form-label">Población</label>
+                            <input type="numb" class="form-control" id="paisPoblacionNuevo" placeholder="6000000">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paisSuperficieNuevo" class="form-label">Superficie en Km2</label>
+                            <input type="numb" class="form-control" id="paisSuperficieNuevo" placeholder="163265">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paisIdiomaNuevo" class="form-label">Idioma</label>
+                            <input type="text" class="form-control" id="paisIdiomaNuevo" placeholder="Wakandiano">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paisAnoNuevo" class="form-label">Año de independencia</label>
+                            <input type="numb" class="form-control" id="paisAnoNuevo" placeholder="2023">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paisCapitalNuevo" class="form-label">Capital</label>
+                            <input type="email" class="form-control" id="paisCapitalNuevo" placeholder="Birnin Zana">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-primary" id="btnAgregarPais">Crear</button>
                 </div>
             </div>
         </div>
@@ -73,7 +98,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="mb-3">
+                            <label for="paisFiltro" class="form-label">Filtro</label>
+                            <input type="email" class="form-control" id="paisFiltro" placeholder="Filtro"
+                                aria-describedby="emailHelp">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -91,7 +122,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Lista de países</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

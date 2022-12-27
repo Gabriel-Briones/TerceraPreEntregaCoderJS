@@ -28,9 +28,11 @@
 }
 
 
-.barra_nav {}
+.barra_nav {
+    
+}
 
 .titulos {
     text-align: center;
     border-bottom: 2px solid black;
-  }
+}

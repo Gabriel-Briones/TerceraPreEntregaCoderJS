@@ -1,13 +1,17 @@
 
 // Función para agregar un nuevo país al array de países
-function agregarPais() {
-    // Pedir al usuario que ingrese la información del nuevo país
-    const nombre = prompt("Ingrese el nombre del país:");
-    const poblacion = prompt("Ingrese la población del país (en números):");
-    const superficie = prompt("Ingrese la superficie del país en km² (en números):");
-    const idioma = prompt("Ingrese el idioma oficial del país:");
-    const independencia = prompt("Ingrese el año de independencia del país (en números):");
-    const capital = prompt("Ingrese la capital del país:");
+const botonAgregar = document.querySelector("#btnAgregarPais");
+botonAgregar.addEventListener("click", agregarPais);
+const formulario = document.querySelector("#agregar-form");
+
+function agregarPais(e) {
+    e.preventDefault();
+    const nombre = document.querySelector("#paisNombreNuevo").value;
+    const poblacion = document.querySelector("#paisPoblacionNuevo").value;
+    const superficie = document.querySelector("#paisSuperficieNuevo").value;
+    const idioma = document.querySelector("#paisIdiomaNuevo").value;
+    const independencia = document.querySelector("#paisAnoNuevo").value;
+    const capital = document.querySelector("#paisCapitalNuevo").value;
 
     // Validar que el usuario haya ingresado valores válidos para la población y superficie
     if (!poblacion || isNaN(poblacion) || !superficie || isNaN(superficie)) {
@@ -32,8 +36,14 @@ function agregarPais() {
     };
 
     // Agregar el nuevo objeto al array de países
+    borrarPaisesViejos();
     paises.push(pais);
+    pintarPaises();
+    formulario.reset();
 }
+
+// agregarInput.focus(); // vuele el cursor al camp
+// agregarPais.reset(); //el formulario se reinicia luego de apretar agregar
 
 function mostrarPaises() {
     // Ordenar el array de países por población
@@ -99,43 +109,6 @@ function verCaracteristicas() {
     }
 }
 
-// while (true) {
-//     // Mostrar un menú con las opciones disponibles
-//     const opcion = prompt(
-//         "Elige una opción:\n\n" +
-//         "1. Agregar un nuevo país\n" +
-//         "2. Mostrar la lista de países ordenada por población\n" +
-//         "3. Filtrar los países que tienen el idioma español\n" +
-//         "4. Eliminar un país\n" +
-//         "5. Ver características\n" +
-//         "6. Salir"
-//     );
-
-//     // Realizar una acción según la opción elegida por el usuario
-//     switch (opcion) {
-//         case "1":
-//             agregarPais();
-//             break;
-//         case "2":
-//             mostrarPaises();
-//             break;
-//         case "3":
-//             filtrarPaises();
-//             break;
-//         case "4":
-//             eliminarPais();
-//             break;
-//         case "5":
-//             verCaracteristicas();
-//             break;
-//         case "6":
-//             alert("¡Hasta luego!");
-//             break;
-//         default:
-//             alert("Opción inválida. Por favor, elige una opción válida.");
-//             break;
-//     }
-// }
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -169,6 +142,16 @@ const pintarPaises = () => {
         contenedor.appendChild(div);
     });
 };
+
+//Borrar set de países viejos al agregar uno nuevo
+
+const borrarPaisesViejos = () => {
+    const contenedor = document.getElementById("pais-contenedor");
+    while (contenedor.firstChild) {
+        contenedor.removeChild(contenedor.firstChild);
+    }
+};
+
 
 // MODO OSCURO
 const botonColorMode = document.querySelector("#color-mode");
