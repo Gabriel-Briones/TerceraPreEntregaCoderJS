@@ -42,22 +42,19 @@ function agregarPais(e) {
     formulario.reset();
 }
 
-// agregarInput.focus(); // vuele el cursor al camp
-// agregarPais.reset(); //el formulario se reinicia luego de apretar agregar
+// function mostrarPaises() {
+//     // Ordenar el array de países por población
+//     paises.sort((a, b) => a.poblacion - b.poblacion);
 
-function mostrarPaises() {
-    // Ordenar el array de países por población
-    paises.sort((a, b) => a.poblacion - b.poblacion);
+//     // Crear una cadena con los nombres de los países ordenados
+//     let cadena = "Los países ordenados por población de menor a mayor son:\n\n";
+//     for (let i = 0; i < paises.length; i++) {
+//         cadena += `${i + 1}. ${paises[i].nombre}\n`;
+//     }
 
-    // Crear una cadena con los nombres de los países ordenados
-    let cadena = "Los países ordenados por población de menor a mayor son:\n\n";
-    for (let i = 0; i < paises.length; i++) {
-        cadena += `${i + 1}. ${paises[i].nombre}\n`;
-    }
-
-    // Mostrar la cadena con el método alert
-    alert(cadena);
-}
+//     // Mostrar la cadena con el método alert
+//     alert(cadena);
+// }
 
 function filtrarPaises() {
     // Filtrar el array de países para obtener solo los que tienen el idioma español
@@ -110,19 +107,7 @@ function verCaracteristicas() {
 }
 
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    pintarPaises();
-
-    // if (localStorage.getItem('carrito')) {
-    //     carrito = obtenerCarritoStorage();
-    //     console.log(carrito)
-    //     actualizarCarrito(carrito);
-    // }
-});
-
-//Mostrar Países
-
+//Mostrar Países en el HTML
 const pintarPaises = () => {
     const contenedor = document.getElementById("pais-contenedor");
     paises.forEach(pais => {
@@ -144,7 +129,6 @@ const pintarPaises = () => {
 };
 
 //Borrar set de países viejos al agregar uno nuevo
-
 const borrarPaisesViejos = () => {
     const contenedor = document.getElementById("pais-contenedor");
     while (contenedor.firstChild) {
@@ -152,37 +136,7 @@ const borrarPaisesViejos = () => {
     }
 };
 
-
-// MODO OSCURO
-const botonColorMode = document.querySelector("#color-mode");
-const body = document.body;
-
-let darkMode = localStorage.getItem("dark-mode");
-
-function activarDarkMode() {
-    body.classList.add("text-bg-dark");
-    localStorage.setItem("dark-mode", "activado");
-    document.getElementById("color-mode").innerText = "Modo Claro";
-}
-
-function desactivarDarkMode() {
-    body.classList.remove("text-bg-dark");
-    localStorage.setItem("dark-mode", "desactivado");
-    document.getElementById("color-mode").innerText = "Modo Oscuro";
-}
-
-if (darkMode === "activado") {
-    activarDarkMode();
-} else {
-    desactivarDarkMode();
-}
-
-botonColorMode.addEventListener("click", () => {
-    darkMode = localStorage.getItem("dark-mode");
-
-    if (darkMode === "activado") {
-        desactivarDarkMode();
-    } else {
-        activarDarkMode();
-    }
-})
+// Carga inicial de la pagina 
+document.addEventListener('DOMContentLoaded', () => {
+    pintarPaises();
+});
