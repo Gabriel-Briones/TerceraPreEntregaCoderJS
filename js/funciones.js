@@ -70,6 +70,18 @@ function filtrarPaises() {
     alert(cadena);
 }
 
+
+//Lista para modal "Eliminar Países"
+
+const modalEliminarPaises = () => {
+    const contenedorModal = document.getElementById("modal-opciones-eliminar");
+    paises.forEach(pais => {
+        const option = document.createElement('option');
+        option.innerHTML += `<option> ${pais.nombre} </option>`
+        contenedorModal.appendChild(option);
+    });
+};
+
 function eliminarPais() {
     // Pedir al usuario que ingrese el nombre del país que desea eliminar
     const nombre = prompt("Ingrese el nombre del país que desea eliminar:");
@@ -110,6 +122,7 @@ function verCaracteristicas() {
 //Mostrar Países en el HTML
 const pintarPaises = () => {
     const contenedor = document.getElementById("pais-contenedor");
+    console.log(contenedor)
     paises.forEach(pais => {
         const div = document.createElement('div');
         div.classList.add('caja');
@@ -139,4 +152,5 @@ const borrarPaisesViejos = () => {
 // Carga inicial de la pagina 
 document.addEventListener('DOMContentLoaded', () => {
     pintarPaises();
+    modalEliminarPaises();
 });
