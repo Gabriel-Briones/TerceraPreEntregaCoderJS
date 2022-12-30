@@ -82,42 +82,31 @@ const modalEliminarPaises = () => {
     });
 };
 
+
+const btnEliminarModal = document.getElementById("btnEliminarModal");
+btnEliminarModal.addEventListener("click", eliminarPais);
+
 function eliminarPais() {
-    // Pedir al usuario que ingrese el nombre del país que desea eliminar
-    const nombre = prompt("Ingrese el nombre del país que desea eliminar:");
+    const select = document.getElementById("modal-opciones-eliminar");
+    const nombre = select.value;
 
-    // Buscar el país en el array de países
-    const pais = paises.filter(pais => pais.nombre === nombre);
-
-    // Si el array resultante está vacío, el país no se encuentra en el array
-    if (pais.length === 0) {
-        // Mostrar un mensaje indicando que el país no se encuentra en el array
-        alert(`El país ${nombre} no se encuentra en el array de datos.`);
+    // Validar que se haya seleccionado un país
+    if (nombre === "Selecciona un país de esta lista") {
+        alert("Selecciona un país de la lista para eliminarlo.");
         return;
     }
 
-    // Filtrar el array de países para obtener solo los que no tienen el nombre ingresado
-    const paisesFiltrados = paises.filter(pais => pais.nombre !== nombre);
+    // Buscar el índice del país en el array
+    const indice = paises.findIndex(pais => pais.nombre === nombre);
 
-    // Reemplazar el array de países con el array filtrado
-    paises = paisesFiltrados;
+    // Eliminar el país del array
+    paises.splice(indice, 1);
+
+    console.log(paises);
+
+    // Actualizar la lista de países en el modal
+    modalEliminarPaises();
 }
-
-function verCaracteristicas() {
-    // Pedir al usuario que ingrese el nombre del país
-    const nombrePais = prompt("Ingrese el nombre del país:");
-
-    // Buscar el país en el array de países
-    const pais = paises.find(pais => pais.nombre === nombrePais);
-
-    // Mostrar todas las características del país
-    if (pais) {
-        alert(`Nombre: ${pais.nombre}\nPoblación: ${pais.poblacion}\nSuperficie: ${pais.superficie} km²\nIdioma: ${pais.idioma}\nIndependencia: ${pais.independencia}\nCapital: ${pais.capital}`);
-    } else {
-        alert("No se ha encontrado el país ingresado.");
-    }
-}
-
 
 //Mostrar Países en el HTML
 const pintarPaises = () => {
