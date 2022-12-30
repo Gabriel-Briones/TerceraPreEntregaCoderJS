@@ -1,6 +1,5 @@
+// Chequear si hay una base de datos previa en la memoria local
 const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
-console.log(paisesEnLS)
-
 if (paisesEnLS !== null) {
     paises = paisesEnLS;
     console.log("Lista de paises ya en memoria local");
@@ -9,7 +8,7 @@ if (paisesEnLS !== null) {
     console.log("Se asignaron los valores de la base de datos en JS");
 }
 
-// Función para agregar un nuevo país al array de países
+// Modal "Agregar país": Función para agregar un nuevo país al array
 const botonAgregar = document.querySelector("#btnAgregarPais");
 botonAgregar.addEventListener("click", agregarPais);
 const formulario = document.querySelector("#agregar-form");
@@ -53,7 +52,15 @@ function agregarPais(e) {
     formulario.reset();
 }
 
-//Lista para modal "Eliminar Países"
+//Borrar set de países viejos al agregar uno nuevo
+const borrarPaisesViejos = () => {
+    const contenedor = document.getElementById("pais-contenedor");
+    while (contenedor.firstChild) {
+        contenedor.removeChild(contenedor.firstChild);
+    }
+};
+
+//Modal "Eliminar Países": Lista de opciones
 const modalEliminarPaises = () => {
     const contenedorModal = document.getElementById("modal-opciones-eliminar");
     while (contenedorModal.firstChild) {
@@ -69,6 +76,8 @@ const modalEliminarPaises = () => {
     });
 };
 
+
+// Modal "Eliminar Países": Funcionalidad botón Eliminar
 const btnEliminarModal = document.getElementById("btnEliminarModal");
 btnEliminarModal.addEventListener("click", eliminarPais);
 
@@ -91,10 +100,9 @@ function eliminarPais() {
 
     borrarPaisesViejos();
     pintarPaises();
-
 }
 
-//Mostrar Países en el HTML
+//Cuerpo HTML: Mostrar Países
 const pintarPaises = () => {
     const contenedor = document.getElementById("pais-contenedor");
     paises.forEach(pais => {
@@ -114,14 +122,6 @@ const pintarPaises = () => {
         contenedor.appendChild(div);
     });
     modalEliminarPaises(); //Refrescar la lista de países en el modal
-};
-
-//Borrar set de países viejos al agregar uno nuevo
-const borrarPaisesViejos = () => {
-    const contenedor = document.getElementById("pais-contenedor");
-    while (contenedor.firstChild) {
-        contenedor.removeChild(contenedor.firstChild);
-    }
 };
 
 // Carga inicial de la pagina 
