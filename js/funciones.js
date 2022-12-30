@@ -1,4 +1,13 @@
-const paisesEnLS = ''
+const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
+console.log(paisesEnLS)
+
+if (paisesEnLS !== null) {
+    paises = paisesEnLS;
+    console.log("Lista de paises ya en memoria local");
+} else {
+    const paisesEnLS = paises;
+    console.log("Se asignaron los valores de la base de datos en JS");
+}
 
 // Función para agregar un nuevo país al array de países
 const botonAgregar = document.querySelector("#btnAgregarPais");
@@ -39,7 +48,6 @@ function agregarPais(e) {
     paises.push(pais);
 
     localStorage.setItem("paisesEnLS", JSON.stringify(paises));
-    const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
 
     pintarPaises();
     formulario.reset();
@@ -80,7 +88,6 @@ function eliminarPais() {
     modalEliminarPaises();     // Actualizar la lista de países en el modal
 
     localStorage.setItem("paisesEnLS", JSON.stringify(paises));
-    const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
 
     borrarPaisesViejos();
     pintarPaises();
@@ -89,9 +96,6 @@ function eliminarPais() {
 
 //Mostrar Países en el HTML
 const pintarPaises = () => {
-    if (paisesEnLS === '') {
-        const paisesEnLS = paises;
-    }
     const contenedor = document.getElementById("pais-contenedor");
     paises.forEach(pais => {
         const div = document.createElement('div');
