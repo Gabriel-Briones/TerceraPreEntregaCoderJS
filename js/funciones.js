@@ -1,3 +1,4 @@
+const paisesEnLS = ''
 // Función para agregar un nuevo país al array de países
 const botonAgregar = document.querySelector("#btnAgregarPais");
 botonAgregar.addEventListener("click", agregarPais);
@@ -17,13 +18,11 @@ function agregarPais(e) {
         alert("La población y la superficie deben ser valores numéricos.");
         return;
     }
-
     // Validar que el usuario haya ingresado un año de independencia válido
     if (!independencia || isNaN(independencia) || independencia < 0) {
         alert("El año de independencia debe ser un número entero positivo.");
         return;
     }
-
     // Crear un nuevo objeto con la información del país
     const pais = {
         nombre: nombre,
@@ -37,6 +36,10 @@ function agregarPais(e) {
     // Agregar el nuevo objeto al array de países
     borrarPaisesViejos();
     paises.push(pais);
+
+    localStorage.setItem("paisesEnLS", JSON.stringify(paises));
+    const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
+
     pintarPaises();
     formulario.reset();
 }
@@ -56,17 +59,22 @@ function filtrarPaises() {
 }
 
 
-//Lista para modal "Eliminar Países"
 
+//Lista para modal "Eliminar Países"
 const modalEliminarPaises = () => {
     const contenedorModal = document.getElementById("modal-opciones-eliminar");
+    while (contenedorModal.firstChild) {
+        contenedorModal.removeChild(contenedorModal.firstChild);
+    }
+    const option = document.createElement('option');
+    option.innerHTML += `<option selected>Selecciona un país de esta lista</option>`
+    contenedorModal.appendChild(option);
     paises.forEach(pais => {
         const option = document.createElement('option');
         option.innerHTML += `<option> ${pais.nombre} </option>`
         contenedorModal.appendChild(option);
     });
 };
-
 
 const btnEliminarModal = document.getElementById("btnEliminarModal");
 btnEliminarModal.addEventListener("click", eliminarPais);
@@ -80,16 +88,25 @@ function eliminarPais() {
         alert("Selecciona un país de la lista para eliminarlo.");
         return;
     }
-
     // Eliminar el país del array
     const indice = paises.findIndex(pais => pais.nombre === nombre);
     paises.splice(indice, 1);
 
     modalEliminarPaises();     // Actualizar la lista de países en el modal
+
+    localStorage.setItem("paisesEnLS", JSON.stringify(paises));
+    const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
+
+    borrarPaisesViejos();
+    pintarPaises();
+
 }
 
 //Mostrar Países en el HTML
 const pintarPaises = () => {
+    if (paisesEnLS === '') {
+        const paisesEnLS = paises;
+    }
     const contenedor = document.getElementById("pais-contenedor");
     paises.forEach(pais => {
         const div = document.createElement('div');
@@ -117,14 +134,13 @@ const borrarPaisesViejos = () => {
     }
 };
 
+
+// localStorage.setItem("paisesEnLS", JSON.stringify(paises));
+// const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
+// console.log(paisesEnLS);
+
 // Carga inicial de la pagina 
 document.addEventListener('DOMContentLoaded', () => {
     pintarPaises();
     modalEliminarPaises();
 });
-
-
-// Almacenamiento de países en memoria local
-localStorage.setItem("paises", JSON.stringify(paises));
-const paisesEnLS = JSON.parse(localStorage.getItem("paises"));
-console.log(paisesEnLS);
