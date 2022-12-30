@@ -1,4 +1,3 @@
-
 // Función para agregar un nuevo país al array de países
 const botonAgregar = document.querySelector("#btnAgregarPais");
 botonAgregar.addEventListener("click", agregarPais);
@@ -42,20 +41,6 @@ function agregarPais(e) {
     formulario.reset();
 }
 
-// function mostrarPaises() {
-//     // Ordenar el array de países por población
-//     paises.sort((a, b) => a.poblacion - b.poblacion);
-
-//     // Crear una cadena con los nombres de los países ordenados
-//     let cadena = "Los países ordenados por población de menor a mayor son:\n\n";
-//     for (let i = 0; i < paises.length; i++) {
-//         cadena += `${i + 1}. ${paises[i].nombre}\n`;
-//     }
-
-//     // Mostrar la cadena con el método alert
-//     alert(cadena);
-// }
-
 function filtrarPaises() {
     // Filtrar el array de países para obtener solo los que tienen el idioma español
     const paisesEnEspanol = paises.filter(pais => pais.idioma === "español");
@@ -96,22 +81,16 @@ function eliminarPais() {
         return;
     }
 
-    // Buscar el índice del país en el array
-    const indice = paises.findIndex(pais => pais.nombre === nombre);
-
     // Eliminar el país del array
+    const indice = paises.findIndex(pais => pais.nombre === nombre);
     paises.splice(indice, 1);
 
-    console.log(paises);
-
-    // Actualizar la lista de países en el modal
-    modalEliminarPaises();
+    modalEliminarPaises();     // Actualizar la lista de países en el modal
 }
 
 //Mostrar Países en el HTML
 const pintarPaises = () => {
     const contenedor = document.getElementById("pais-contenedor");
-    console.log(contenedor)
     paises.forEach(pais => {
         const div = document.createElement('div');
         div.classList.add('caja');
@@ -143,3 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pintarPaises();
     modalEliminarPaises();
 });
+
+
+// Almacenamiento de países en memoria local
+localStorage.setItem("paises", JSON.stringify(paises));
+const paisesEnLS = JSON.parse(localStorage.getItem("paises"));
+console.log(paisesEnLS);
