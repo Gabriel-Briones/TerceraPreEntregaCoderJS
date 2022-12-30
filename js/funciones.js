@@ -1,4 +1,5 @@
 const paisesEnLS = ''
+
 // Función para agregar un nuevo país al array de países
 const botonAgregar = document.querySelector("#btnAgregarPais");
 botonAgregar.addEventListener("click", agregarPais);
@@ -43,22 +44,6 @@ function agregarPais(e) {
     pintarPaises();
     formulario.reset();
 }
-
-function filtrarPaises() {
-    // Filtrar el array de países para obtener solo los que tienen el idioma español
-    const paisesEnEspanol = paises.filter(pais => pais.idioma === "español");
-
-    // Crear una cadena con los nombres de los países que tienen el idioma español
-    let cadena = `Hay ${paisesEnEspanol.length} países con el idioma español:\n\n`;
-    for (let i = 0; i < paisesEnEspanol.length; i++) {
-        cadena += `${i + 1}. ${paisesEnEspanol[i].nombre}\n`;
-    }
-
-    // Mostrar la cadena con el método alert
-    alert(cadena);
-}
-
-
 
 //Lista para modal "Eliminar Países"
 const modalEliminarPaises = () => {
@@ -124,6 +109,7 @@ const pintarPaises = () => {
                         </div>`
         contenedor.appendChild(div);
     });
+    modalEliminarPaises(); //Refrescar la lista de países en el modal
 };
 
 //Borrar set de países viejos al agregar uno nuevo
@@ -133,11 +119,6 @@ const borrarPaisesViejos = () => {
         contenedor.removeChild(contenedor.firstChild);
     }
 };
-
-
-// localStorage.setItem("paisesEnLS", JSON.stringify(paises));
-// const paisesEnLS = JSON.parse(localStorage.getItem("paisesEnLS"));
-// console.log(paisesEnLS);
 
 // Carga inicial de la pagina 
 document.addEventListener('DOMContentLoaded', () => {
